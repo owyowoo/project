@@ -1,51 +1,34 @@
 <?php
 namespace App\Http\Controllers\Front;
+
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Request;
-use Illuminate\Routing\Redirector;
+use App\Http\Requests;
+use App;
 use DB;
-use Cookie;
-use Qiniu\Auth;
-use Qiniu\Storage\BucketManager;
 
 class IndexController extends Controller 
 {
-    public function __construct(RenderContract $IndexRender, StoreContract $IndexStore)
+    protected $render;
+    protected $store;
+    protected $fetch;
+    //protected $help;
+
+    public function __construct(FetchContract $fetch, RenderContract $render, StoreContract $store)
     {
-        $this->render = $IndexRender;
-        $this->store = $IndexStore;
+        $this->fetch = $fetch;
+        $this->render = $render;
+        $this->store = $store;
     }
-    //
-    public function index() {
+ 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index() 
+    {
 
-        $sql = "SELECT id, title, intro, img_url FROM articles WHERE state = 1";
-
-        $cls_id = 0;
-        if (Request::has('cls_id')) {
-            $cls_id = Request::input('cls_id');
-            $sql .= " AND cls_id = {$cls_id}";
-        }
-
-        $articles = DB::select($sql);
-        if($articles) {
-            $flows = array();
-            foreach($articles as  $key => $article) {
-                $sql = "SELECT t.name FROM articles_tags AS a ";
-                $sql .= " LEFT JOIN tags AS t ON a.tag_id = t.id";
-                $sql .= " WHERE a.article_id = {$article->id}";
-
-                $tags = DB::select($sql);
-
-                $article->tags = $tags;
-
-                $num = $key % 3;
-                if($num == 0) $flows[0][] = $article;
-                if($num == 1) $flows[1][] = $article;
-                if($num == 2) $flows[2][] = $article;
-            }
-           
-        }
-
+        
 
         //$data['nav'] =  $this->render->html('nav', $flows);
         $data['flows'] = $this->render->html('flows', $flows);
@@ -53,8 +36,14 @@ class IndexController extends Controller
 
     }
 
-    //
-    public function show($id) {
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id) 
+    {
        
         //article
        
@@ -66,8 +55,15 @@ class IndexController extends Controller
         return view('themes.article-show', $data);
     }
 
-    //
-    public function edit($id) {
+
+   /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id) 
+    {
 
         if($id) {
         
@@ -108,8 +104,14 @@ class IndexController extends Controller
         return view('themes.article-edit', $data);
     }
 
-    //
-    public function store(Request $request) {
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request) 
+    {
 
        
         $title = $request->input('title');
@@ -126,7 +128,14 @@ class IndexController extends Controller
 
     }
 
-    public function del() {
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function del($id) 
+    {
 
     }
 

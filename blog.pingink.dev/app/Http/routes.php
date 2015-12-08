@@ -16,16 +16,16 @@
 // });
 
 Route::get('/', 'Front\IndexController@index');
-Route::get('article', 'Front\IndexController@article');
 
 
 
-Route::group(['middleware' => 'Master'], function()
-{
-    Route::get('edit', 'Front\IndexController@edit');
-    Route::post('save', 'Front\IndexController@save');
 
-});
+// Route::group(['middleware' => 'Master'], function()
+// {
+//     Route::get('edit', 'Front\IndexController@edit');
+//     Route::post('save', 'Front\IndexController@save');
+
+// });
 
 
 

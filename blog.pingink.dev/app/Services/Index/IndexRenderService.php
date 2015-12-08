@@ -1,6 +1,7 @@
 <?php
 namespace App\Services; 
 use App\Contracts\RenderContract; 
+
 class IndexRenderService implements RenderContract 
 { 
     private $data;
@@ -12,8 +13,8 @@ class IndexRenderService implements RenderContract
     }
 
 
-
-    public function cls()
+    
+    public function nav()
     {
         $data = $this->data;
         $str = '<ul>';
