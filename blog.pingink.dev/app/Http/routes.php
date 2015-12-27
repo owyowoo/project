@@ -27,5 +27,5 @@ Route::get('/', function () {
 */
 
 Route::group(['middleware' => ['web']], function () {
-    //
+    //如果已经有了html静态文件，则直接返回html静态文件
 });

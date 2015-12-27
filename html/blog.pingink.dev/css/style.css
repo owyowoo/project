@@ -9,12 +9,17 @@
 
 /*global*/
 body {
-    background: #e9e9e9;
+    background: #ededed;
     font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
     font-size: 16px;
     line-height: 1.7;
     word-wrap: break-word;
     color: #222;
+}
+
+a {
+	text-decoration: none;
+    color: #141414;
 }
 
 /*layout*/
@@ -26,11 +31,22 @@ body {
     clear: both;
 }
 
+.header .header-box {
+	width: 960px;
+	margin: 0 auto;
+	height: 60px;
+}
 
+.header .logo {
+	width: 76px;
+	height: 60px;
+	background-image: url(../img/animation.gif);
+	background-repeat: no-repeat;
+}
 
 .wrapper {
 	width: 1360px;
-  margin: 0 auto;
+  	margin:  auto;
 	display: relative;
 }
 
@@ -40,25 +56,88 @@ body {
     margin: 10px auto;
     background: #fff;
     box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22);
+    padding-top: 6px;
 }
+
+.nav ul li {
+    margin-left: 1em;
+    display: inline;
+    cursor: default;
+}
+
+.nav ul li a:hover {
+	color: #4078c0;
+}
+
 
 .content {
 	margin: 0 auto;
 	width: 960px;
-	height: 800px;
-	background: #fff;
 }
 
+.page-index .flow {
+    width: 310px;
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 1%;
+}
 
+.page-index .section {
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    text-decoration: none;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22);
+    border-radius: 6px;
+}
+
+.page-index .section .title {
+	text-align: center;
+    font-size: 120%;
+    margin: 10px 0 10px 0;
+    background: #FFFFFF;
+    padding: 10px 0 10px 0;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22);
+}
+
+.page-index .section img {
+	display: block;
+	margin: 0 auto;
+}
+
+.page-index .section .tags {
+	padding: 4px;
+}
+
+.page-index .section .tags span {
+	font-size: 14px;
+	padding: 2px 4px;
+	background: #dbe8f9;
+	color: #4078C0;
+}
 
 .aside-tags{
 	position: fixed;
 	top: 140px;
 	left: 10px;
 	width: 180px;
-	height: 300px;
 	background: #fff;
+	padding: 10px;
 }
+
+.aside-tags span {
+	padding: 2px 4px;
+	background: #dbe8f9;
+	color: #4078C0;
+}
+
+.aside-tags span:hover {
+	padding: 2px 4px;
+	background: #4078C0;
+	color: #fff;
+	cursor: default;
+}
+
 
 .aside-ad {
   position: absolute;
@@ -70,6 +149,8 @@ body {
 }
 
 .footer {
+	position: fixed;
+	bottom: 0;
 	height: 40px;
 	width: 100%;
 	background: #fff;
